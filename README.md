@@ -44,7 +44,8 @@ click on `Custom Domains`, add your own `customdomain.com` as point 2 and click 
 </br>
 <img src="README/9.png" alt="">
 
-10. Open terminal on the environment (`Web SSH`) and run `git clone https://github.com/danielemaddaluno/jeldock` then move inside ot the folder using a `cd jeldock`
+10. Open terminal on the environment (`Web SSH`) and run `git clone https://github.com/danielemaddaluno/jeldock` (for a private repo you'll need a [token](https://stackoverflow.com/a/70320541/3138238))
+then move inside ot the folder using a `cd jeldock`
 </br>
 <img src="README/10.png" alt="">
 
