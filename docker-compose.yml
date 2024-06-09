@@ -1,0 +1,24 @@
+version: '3'
+services:
+
+  client-web:
+    container_name: jeldock-prod-client-web
+    image: maven:3.9-eclipse-temurin-21-alpine
+    volumes:
+      - ./client_web:/app
+    working_dir: /app
+    command: >
+      sh -c "mvn clean jetty:run"
+
+  servers-nginx:
+    container_name: jeldock-prod-servers-nginx
+    image: nginx:stable-alpine3.17-slim
+    restart: always
+    volumes:
+      - ./servers_nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      -  /var/lib/jelastic/keys:/etc/nginx/ssl/:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - client-web

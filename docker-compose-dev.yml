@@ -1,0 +1,65 @@
+version: '3'
+services:
+
+  client-web:
+    container_name: jeldock-dev-client-web
+    image: maven:3.9-eclipse-temurin-21-alpine
+    volumes:
+      - ./client_web:/app
+    working_dir: /app
+    command: >
+      sh -c "mvn clean jetty:run"
+
+  servers-nginx:
+    container_name: jeldock-dev-servers-nginx
+    image: nginx:stable-alpine3.17-slim
+    restart: always
+    volumes:
+      - ./servers_nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./utils/ssl:/etc/nginx/ssl/:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - client-web
+#      - server-java
+#      - server-python
+#      - server-node
+
+#
+#  server-java:
+#    container_name: server-java
+#    image: maven:3.9-eclipse-temurin-21-alpine
+#    volumes:
+#      - ./server_java:/app
+#      - ./settings.xml:/root/.m2/settings.xml
+#    working_dir: /app
+#    command: [ "mvn", "spring-boot:run" ]
+##    ports:
+##      - "8080:8080"
+#
+#  server-python:
+#    container_name: server-python
+#    image: python:3.11-slim-bookworm
+#    volumes:
+#      - ./server_python:/app
+#    working_dir: /app
+#    command: >
+#      /bin/bash -c "pip install -r requirements.txt &&
+#      uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+##    ports:
+##      - "8000:8000"
+#
+#  server-node:
+#    container_name: server-node
+#    image: node:lts-slim
+#    volumes:
+#      - ./server_node:/app
+#    working_dir: /app
+#    command: >
+#      /bin/bash -c "
+#      rm -rf node_modules &&
+#      npm install &&
+#      node ./bin/www"
+##    ports:
+##      - "3000:3000"
