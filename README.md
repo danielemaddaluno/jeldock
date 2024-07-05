@@ -45,7 +45,7 @@ Docker yml example run docker with configured ssl on Jelastic Environment
    <img src="README/9.png" alt="Portainer Change Password">
 
 10. Open terminal on the environment (`Web SSH`) and run `git clone https://github.com/danielemaddaluno/jeldock` (for a private repo you'll need a [token](https://stackoverflow.com/a/70320541/3138238))
-    then move inside ot the folder using a `cd jeldock`
+    then move inside of the folder using a `cd jeldock`
     </br>
     <img src="README/10.png" alt="Git Clone">
     Read this only if you need to checkout a different branch (not main), otherwise go to the next point.
